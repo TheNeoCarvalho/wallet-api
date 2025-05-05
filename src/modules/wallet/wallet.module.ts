@@ -6,8 +6,8 @@ import { WalletController } from './infrastructure/wallet.controller';
 
 @Module({
     imports: [TypeOrmModule.forFeature([Wallet])],
-    controllers: [WalletController],
     providers: [WalletRepositoryImpl],
     exports: [WalletRepositoryImpl],
+    controllers: [WalletController],
 })
 export class WalletModule { }

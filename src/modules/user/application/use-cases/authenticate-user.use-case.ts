@@ -1,16 +1,12 @@
 import { UserRepository } from '../../domain/user.repository';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
-
-interface AuthDTO {
-    email: string;
-    password: string;
-}
+import { LoginUserDto } from '../../infrastructure/dtos/login-user.dto';
 
 export class AuthenticateUserUseCase {
     constructor(private readonly userRepo: UserRepository) { }
 
-    async execute(data: AuthDTO): Promise<{ token: string }> {
+    async execute(data: LoginUserDto): Promise<{ token: string }> {
         const user = await this.userRepo.findByEmail(data.email);
         if (!user) throw new Error('Invalid credentials');
 
